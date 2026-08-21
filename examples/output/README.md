@@ -3,6 +3,8 @@
 Esta pasta contém uma amostra da saída produzida pela sequência sintética descrita no README principal.
 
 - `preview.png`: eventos acumulados e taxa de eventos ao longo do tempo.
+- `events.txt`: arquivo completo de eventos em texto (`t x y pol`).
+- `events.npz`: arquivo completo e compacto para carregamento com NumPy.
 - `events_sample.txt`: primeiras 20 linhas do arquivo `events.txt` completo.
 
 ![Prévia dos eventos simulados](preview.png)

@@ -5,4 +5,4 @@ __pycache__/
 .venv/
 demo_seq/
 demo_out/
-preview.png
+/preview.png

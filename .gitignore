@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.test_tmp/
+.venv/
+demo_seq/
+demo_out/
+preview.png

@@ -1,0 +1,6 @@
+O código atendendo aos seguintes requisitos: 
+- Código em python
+- Deve roda no windows
+- Só usar bibliotecas simples
+- Não usar vsctool e catskin
+- O código deve funcionar dentro de uma env conda

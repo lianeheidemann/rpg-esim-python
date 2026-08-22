@@ -176,6 +176,10 @@ python -m esim.viz demo_out --save-to preview.png   # headless, writes a PNG ins
 
 This renders the accumulated event image (blue = net ON, red = net OFF) next to the event-rate-over-time curve.
 
+<p align="left">
+  <img src="assets/viz_preview.png" alt="Accumulated events and event rate preview">
+</p>
+
 To convert `events.txt` into an event-frame sequence (blue = ON, red = OFF),
 accumulating events in 10 ms windows:
 

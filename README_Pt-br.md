@@ -7,13 +7,6 @@
   <img src="https://img.shields.io/badge/Matplotlib-3.4%2B-11557C?style=for-the-badge" alt="Matplotlib">
 </p>
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Event%20Camera-Simulator-9C27B0?style=flat-square" alt="Event Camera Simulator">
-  <img src="https://img.shields.io/badge/Implementation-Pure%20Python-FFD43B?style=flat-square&logo=python&logoColor=black" alt="Pure Python">
-  <img src="https://img.shields.io/badge/ROS-Not%20Required-2EA44F?style=flat-square" alt="ROS Not Required">
-  <img src="https://img.shields.io/github/license/lianeheidemann/rpg_esim_python_v2?style=flat-square&color=blue" alt="MIT License">
-</p>
-
 [![Generate Demo](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml/badge.svg)](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml)
 
 *[Read in English](README.md)*

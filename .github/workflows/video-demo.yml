@@ -6,7 +6,7 @@ on:
       video_path:
         description: "Caminho do vídeo no repositório"
         required: true
-        default: "video/input.mp4"
+        default: "video/input-1.mp4"
         type: string
 
       contrast_threshold:

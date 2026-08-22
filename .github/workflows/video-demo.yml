@@ -22,11 +22,7 @@ jobs:
   process-video:
     name: Convert video to events
     runs-on: ubuntu-latest
-
-    process-video:
-      name: Convert video to events
-      runs-on: ubuntu-latest
-      timeout-minutes: 60
+    timeout-minutes: 60
 
     env:
       MPLBACKEND: Agg
@@ -77,12 +73,18 @@ jobs:
           python -m esim.event_frames \
             video_out/events.txt \
             --output video_out/event_frames \
-            --window-ms 10
+            --window-ms 50
+
+      - name: Diagnóstico de espaço
+        run: |
+          df -h .
+          ls video_out/event_frames | wc -l
+          du -sh video_out/event_frames
 
       - name: Criar GIF dos eventos
         run: |
           ffmpeg -y \
-            -framerate 100 \
+            -framerate 20 \
             -i "video_out/event_frames/frame_%06d.png" \
             -filter_complex \
             "fps=20,scale=360:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle" \

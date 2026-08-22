@@ -11,6 +11,10 @@
 
 *[Read in English](README.md)*
 
+<p align="left">
+  <img src="assets/event_camera_hand-2.gif">
+</p>
+
 Um port em Python puro do núcleo de geração de eventos do [ESIM](https://github.com/uzh-rpg/rpg_esim), um simulador open-source para câmeras de eventos (sensores classe DVS/DAVIS). Dado uma pasta de imagens de intensidade com timestamp, ele reproduz o modelo de eventos original por pixel — incluindo ruído no limiar, período refratário e geração de frames com motion blur — sem nenhuma dependência de ROS, catkin ou toolchain C++.
 
 ```bibtex

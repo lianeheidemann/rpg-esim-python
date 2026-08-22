@@ -1,0 +1,91 @@
+name: Process Video
+
+on:
+  workflow_dispatch:
+    inputs:
+      video_path:
+        description: "Caminho do vídeo no repositório"
+        required: true
+        default: "video/input.mp4"
+        type: string
+
+      contrast_threshold:
+        description: "Limiar de contraste"
+        required: true
+        default: "0.2"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  process-video:
+    name: Convert video to events
+    runs-on: ubuntu-latest
+
+    env:
+      MPLBACKEND: Agg
+      VIDEO_PATH: ${{ inputs.video_path }}
+      CONTRAST_THRESHOLD: ${{ inputs.contrast_threshold }}
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v7
+
+      - name: Configurar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Extrair frames do vídeo
+        run: |
+          python tools/premiere_video.py \
+            --input "$VIDEO_PATH" \
+            --output video_input
+
+      - name: Gerar eventos
+        run: |
+          python -m esim.cli \
+            --input video_input \
+            --output video_out \
+            --contrast-threshold "$CONTRAST_THRESHOLD" \
+            --random-seed 42
+
+      - name: Gerar visualização
+        run: |
+          python -m esim.viz \
+            video_out/events.npz \
+            --save-to video_preview.png
+
+      - name: Gerar frames de eventos
+        run: |
+          python -m esim.event_frames \
+            video_out/events.txt \
+            --output video_out/event_frames \
+            --window-ms 10
+
+      - name: Verificar resultados
+        run: |
+          test -s video_preview.png
+          test -s video_out/events.npz
+          test -s video_out/events.txt
+
+      - name: Disponibilizar resultados
+        uses: actions/upload-artifact@v7
+        with:
+          name: video-events-${{ github.run_number }}
+          path: |
+            video_preview.png
+            video_out/events.npz
+            video_out/events.txt
+            video_out/event_frames/
+            video_out/frames/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6

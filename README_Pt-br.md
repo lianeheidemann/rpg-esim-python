@@ -12,7 +12,7 @@
 
 *[Read in English](README.md)*
 
-> Origem: este código é uma migração (de C++ para Python) e adaptação do núcleo de geração de eventos do ESIM, publicado originalmente por Henri Rebecq, Daniel Gehrig e Davide Scaramuzza (Robotics and Perception Group, Universidade de Zurique), no artigo "ESIM: an Open Event Camera Simulator" (CoRL 2018) — repositório original em uzh-rpg/rpg_esim. O modelo de simulação de eventos (o algoritmo, os limiares de contraste, o período refratário etc.) é dos autores originais. A reescrita em Python puro, a estrutura do pacote, o CLI, as ferramentas auxiliares (tools/) e os testes são trabalho feito para este repositório.
+> Origem: este código é uma migração (de C++ para Python) e adaptação do núcleo de geração de eventos do ESIM, publicado originalmente por Henri Rebecq, Daniel Gehrig e Davide Scaramuzza (Robotics and Perception Group, Universidade de Zurique), no artigo "ESIM: an Open Event Camera Simulator" (CoRL 2018) — repositório original em uzh-rpg/rpg_esim. O modelo de simulação de eventos (o algoritmo, os limiares de contraste, o período refratário etc.) é dos autores originais. A reescrita em Python puro, a estrutura do pacote, o CLI, as ferramentas auxiliares (src/tools/) e os testes são trabalho feito para este repositório.
 
 <p align="left">
   <img src="assets/original.gif" width="40%" alt="Vídeo original">
@@ -55,25 +55,25 @@ images.csv + frames ──▶ FolderImageSource ──▶ EventSimulator ──�
                                           └──▶ CameraSimulator ──▶ frames/ (PNGs com blur)
 ```
 
-- **`FolderImageSource`** ([esim/data_provider.py](esim/data_provider.py)) lê uma sequência de imagens com timestamp a partir do disco.
-- **`EventSimulator`** ([esim/event_simulator.py](esim/event_simulator.py)) compara o sinal de intensidade (log) contra os limiares de contraste por pixel e emite eventos, respeitando o ruído no limiar e o período refratário.
-- **`CameraSimulator`** ([esim/camera_simulator.py](esim/camera_simulator.py)) integra a intensidade ao longo de uma janela de exposição para sintetizar frames convencionais com motion blur.
-- **`esim.cli`** ([esim/cli.py](esim/cli.py)) conecta os três módulos na ferramenta de linha de comando `python -m esim.cli`.
-- **`esim.writers`** ([esim/writers.py](esim/writers.py)) e **`esim.viz`** ([esim/viz.py](esim/viz.py)) cuidam da E/S de saída e da visualização.
+- **`FolderImageSource`** ([src/esim/data_provider.py](src/esim/data_provider.py)) lê uma sequência de imagens com timestamp a partir do disco.
+- **`EventSimulator`** ([src/esim/event_simulator.py](src/esim/event_simulator.py)) compara o sinal de intensidade (log) contra os limiares de contraste por pixel e emite eventos, respeitando o ruído no limiar e o período refratário.
+- **`CameraSimulator`** ([src/esim/camera_simulator.py](src/esim/camera_simulator.py)) integra a intensidade ao longo de uma janela de exposição para sintetizar frames convencionais com motion blur.
+- **`esim.cli`** ([src/esim/cli.py](src/esim/cli.py)) conecta os três módulos na ferramenta de linha de comando `python -m esim.cli`.
+- **`esim.writers`** ([src/esim/writers.py](src/esim/writers.py)) e **`esim.viz`** ([src/esim/viz.py](src/esim/viz.py)) cuidam da E/S de saída e da visualização.
 
 ## Estrutura do repositório
 
 | Caminho | Conteúdo |
 | --- | --- |
-| [`esim/`](esim) | O pacote do simulador: tipos, simuladores de evento/câmera, provedor de dados, CLI, writers, visualização |
-| [`tests/`](tests) | Testes unitários e ponta a ponta (`unittest`) |
-| [`tools/`](tools) | Scripts independentes: gerador de sequência de teste sintética, construtor de `images.csv`, extrator de frames de vídeo |
-| [`requirements.txt`](requirements.txt) | As três dependências de execução |
+| [`src/esim/`](src/esim) | O pacote do simulador: tipos, simuladores de evento/câmera, provedor de dados, CLI, writers, visualização |
+| [`src/tests/`](src/tests) | Testes unitários e ponta a ponta (`unittest`) |
+| [`src/tools/`](src/tools) | Scripts independentes: gerador de sequência de teste sintética, construtor de `images.csv`, extrator de frames de vídeo |
+| [`src/requirements.txt`](src/requirements.txt) | As três dependências de execução |
 
 ## Requisitos
 
 - Python 3.8+
-- `numpy`, `opencv-python`, `matplotlib` (veja [requirements.txt](requirements.txt))
+- `numpy`, `opencv-python`, `matplotlib` (veja [src/requirements.txt](src/requirements.txt))
 - Roda em Windows, macOS e Linux — não precisa de ROS, catkin, vcstool ou ferramentas de build em C++
 - Funciona dentro de um `venv` comum ou de um ambiente conda; nada aqui exige conda especificamente
 
@@ -82,10 +82,13 @@ images.csv + frames ──▶ FolderImageSource ──▶ EventSimulator ──�
 ```bash
 conda create -n esim python=3.10
 conda activate esim
+cd src
 pip install -r requirements.txt
 ```
 
 (Um `venv` comum funciona da mesma forma — troque as duas primeiras linhas por `python -m venv .venv` e a ativação dele.)
+
+Todos os comandos abaixo (rodar o simulador, as ferramentas, os testes) devem ser executados de dentro de `src/`.
 
 ## Preparando a entrada
 

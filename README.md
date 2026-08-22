@@ -12,7 +12,7 @@
 
 *[Leia em Português](README_Pt-br.md)*
 
-> Provenance: this code is a migration (from C++ to Python) and adaptation of the event-generation core of ESIM, originally published by Henri Rebecq, Daniel Gehrig, and Davide Scaramuzza (Robotics and Perception Group, University of Zurich) in "ESIM: an Open Event Camera Simulator" (CoRL 2018) — original repository at uzh-rpg/rpg_esim. The event-simulation model (the algorithm, contrast thresholds, refractory period, etc.) belongs to the original authors. The pure-Python rewrite, package structure, CLI, tooling (tools/), and tests are work done for this repository
+> Provenance: this code is a migration (from C++ to Python) and adaptation of the event-generation core of ESIM, originally published by Henri Rebecq, Daniel Gehrig, and Davide Scaramuzza (Robotics and Perception Group, University of Zurich) in "ESIM: an Open Event Camera Simulator" (CoRL 2018) — original repository at uzh-rpg/rpg_esim. The event-simulation model (the algorithm, contrast thresholds, refractory period, etc.) belongs to the original authors. The pure-Python rewrite, package structure, CLI, tooling (src/tools/), and tests are work done for this repository
 
 <p align="left">
   <img src="assets/original.gif" width="40%" alt="Vídeo original">
@@ -55,25 +55,25 @@ images.csv + frames ──▶ FolderImageSource ──▶ EventSimulator ──�
                                           └──▶ CameraSimulator ──▶ frames/ (blurred PNGs)
 ```
 
-- **`FolderImageSource`** ([esim/data_provider.py](esim/data_provider.py)) reads a stamped image sequence from disk.
-- **`EventSimulator`** ([esim/event_simulator.py](esim/event_simulator.py)) compares the (log-)intensity signal against the contrast thresholds per pixel and emits events, honoring threshold noise and the refractory period.
-- **`CameraSimulator`** ([esim/camera_simulator.py](esim/camera_simulator.py)) integrates intensity over an exposure window to synthesize motion-blurred conventional frames.
-- **`esim.cli`** ([esim/cli.py](esim/cli.py)) wires the three together into the `python -m esim.cli` command-line tool.
-- **`esim.writers`** ([esim/writers.py](esim/writers.py)) and **`esim.viz`** ([esim/viz.py](esim/viz.py)) handle output I/O and visualization.
+- **`FolderImageSource`** ([src/esim/data_provider.py](src/esim/data_provider.py)) reads a stamped image sequence from disk.
+- **`EventSimulator`** ([src/esim/event_simulator.py](src/esim/event_simulator.py)) compares the (log-)intensity signal against the contrast thresholds per pixel and emits events, honoring threshold noise and the refractory period.
+- **`CameraSimulator`** ([src/esim/camera_simulator.py](src/esim/camera_simulator.py)) integrates intensity over an exposure window to synthesize motion-blurred conventional frames.
+- **`esim.cli`** ([src/esim/cli.py](src/esim/cli.py)) wires the three together into the `python -m esim.cli` command-line tool.
+- **`esim.writers`** ([src/esim/writers.py](src/esim/writers.py)) and **`esim.viz`** ([src/esim/viz.py](src/esim/viz.py)) handle output I/O and visualization.
 
 ## Repository layout
 
 | Path | Contents |
 | --- | --- |
-| [`esim/`](esim) | The simulator package: types, event/camera simulators, data provider, CLI, writers, visualization |
-| [`tests/`](tests) | Unit and end-to-end tests (`unittest`) |
-| [`tools/`](tools) | Standalone scripts: synthetic test-sequence generator, `images.csv` builder, video frame extractor |
-| [`requirements.txt`](requirements.txt) | The three runtime dependencies |
+| [`src/esim/`](src/esim) | The simulator package: types, event/camera simulators, data provider, CLI, writers, visualization |
+| [`src/tests/`](src/tests) | Unit and end-to-end tests (`unittest`) |
+| [`src/tools/`](src/tools) | Standalone scripts: synthetic test-sequence generator, `images.csv` builder, video frame extractor |
+| [`src/requirements.txt`](src/requirements.txt) | The three runtime dependencies |
 
 ## Requirements
 
 - Python 3.8+
-- `numpy`, `opencv-python`, `matplotlib` (see [requirements.txt](requirements.txt))
+- `numpy`, `opencv-python`, `matplotlib` (see [src/requirements.txt](src/requirements.txt))
 - Runs on Windows, macOS, and Linux — no ROS, catkin, vcstool, or C++ build tools needed
 - Works inside a plain `venv` or a conda environment; nothing here requires conda specifically
 
@@ -82,10 +82,13 @@ images.csv + frames ──▶ FolderImageSource ──▶ EventSimulator ──�
 ```bash
 conda create -n esim python=3.10
 conda activate esim
+cd src
 pip install -r requirements.txt
 ```
 
 (A regular `venv` works identically — swap the first two lines for `python -m venv .venv` and activating it.)
+
+All commands below (running the simulator, tools, tests) are meant to be run from inside `src/`.
 
 ## Preparing input
 

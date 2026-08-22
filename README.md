@@ -41,7 +41,7 @@ In practice this means: **you supply the images** (rendered however you like, or
 
 ## Features
 
-- Faithful port of the C++ event model: log- or linear-intensity thresholding, separate positive/negative contrast thresholds (C+/C-), additive Gaussian noise on the thresholds, and a per-pixel refractory period
+- Faithful port of the C++ event model: log- or linear-intensity thresholding, separate positive/negative contrast thresholds (C⁺/C⁻), additive Gaussian noise on the thresholds, and a per-pixel refractory period
 - Motion-blurred frame synthesis via a finite exposure time, alongside the event stream
 - Simple folder-based input (`images.csv` + image files) and file-based output (`.npz` / `.txt` events, PNG frame sequence)
 - A small, dependency-light Python API (`esim.EventSimulator`, `esim.CameraSimulator`) usable outside the CLI
@@ -146,11 +146,11 @@ python -m esim.cli @cfg/my_run.conf
 | --- | --- | --- |
 | `-i`, `--input` | *(required)* | Folder containing `images.csv` and the images |
 | `-o`, `--output` | *(required)* | Folder to write results into |
-| `--contrast-threshold` | — | Set both C+ and C- at once (overrides the two below) |
-| `--contrast-threshold-pos` | `1.0` | Positive (ON) contrast threshold, C+ |
-| `--contrast-threshold-neg` | `1.0` | Negative (OFF) contrast threshold, C- |
-| `--contrast-threshold-sigma-pos` | `0.0` | Std. dev. of Gaussian noise added to C+ |
-| `--contrast-threshold-sigma-neg` | `0.0` | Std. dev. of Gaussian noise added to C- |
+| `--contrast-threshold` | — | Set both C⁺ and C⁻ at once (overrides the two below) |
+| `--contrast-threshold-pos` | `1.0` | Positive (ON) contrast threshold, C⁺ |
+| `--contrast-threshold-neg` | `1.0` | Negative (OFF) contrast threshold, C⁻ |
+| `--contrast-threshold-sigma-pos` | `0.0` | Std. dev. of Gaussian noise added to C⁺ |
+| `--contrast-threshold-sigma-neg` | `0.0` | Std. dev. of Gaussian noise added to C⁻ |
 | `--refractory-period-ns` | `0` | Minimum time between two events at the same pixel |
 | `--no-log-image` | off | Threshold raw intensity instead of log intensity |
 | `--log-eps` | `0.001` | Epsilon added before the log, to stabilize dark pixels |

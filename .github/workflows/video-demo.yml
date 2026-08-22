@@ -112,6 +112,19 @@ jobs:
           if-no-files-found: error
           retention-days: 30
           compression-level: 6
+          uses: actions/upload-artifact@v7
+        with:
+          name: video-events-${{ github.run_number }}
+          path: |
+            src/video_events.gif
+            src/video_preview.png
+            src/video_out/events.npz
+            src/video_out/events.txt
+            src/video_out/event_frames/
+            src/video_out/frames/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
           test -s video_out/events.npz
           test -s video_out/events.txt
 

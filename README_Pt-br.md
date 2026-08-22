@@ -217,6 +217,11 @@ python -m pytest tests/ -q
 
 Este é um port do [ESIM](https://github.com/uzh-rpg/rpg_esim), do Robotics and Perception Group (Universidade de Zurique). Todo o crédito pelo modelo de geração de eventos subjacente é dos autores originais; veja a citação acima.
 
+## Vídeos relacionados
+
+- https://www.youtube.com/watch?v=PLHhEj52c-4
+- https://www.youtube.com/watch?v=1LXt4ScwfXA
+
 ## Licença
 
 Distribuído sob a Licença MIT. Veja [LICENSE](LICENSE).

@@ -8,6 +8,7 @@
 </p>
 
 [![Generate Demo](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml/badge.svg)](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml)
+[![Process Video](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/video-demo.yml/badge.svg)](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/video-demo.yml)
 
 *[Leia em Português](README_Pt-br.md)*
 

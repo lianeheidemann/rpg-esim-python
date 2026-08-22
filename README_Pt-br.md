@@ -41,7 +41,7 @@ Na prática, isso significa: **você fornece as imagens** (renderizadas do jeito
 
 ## Funcionalidades
 
-- Port fiel do modelo de eventos em C++: limiarização por intensidade logarítmica ou linear, limiares de contraste positivo/negativo separados (C+/C-), ruído gaussiano aditivo sobre os limiares e período refratário por pixel
+- Port fiel do modelo de eventos em C++: limiarização por intensidade logarítmica ou linear, limiares de contraste positivo/negativo separados (C⁺/C⁻), ruído gaussiano aditivo sobre os limiares e período refratário por pixel
 - Síntese de frames com motion blur através de um tempo de exposição finito, junto com o fluxo de eventos
 - Entrada simples baseada em pasta (`images.csv` + arquivos de imagem) e saída em arquivos (eventos `.npz` / `.txt`, sequência de frames em PNG)
 - Uma API Python pequena e com poucas dependências (`esim.EventSimulator`, `esim.CameraSimulator`) utilizável fora do CLI
@@ -146,11 +146,11 @@ python -m esim.cli @cfg/my_run.conf
 | --- | --- | --- |
 | `-i`, `--input` | *(obrigatório)* | Pasta contendo `images.csv` e as imagens |
 | `-o`, `--output` | *(obrigatório)* | Pasta onde os resultados serão gravados |
-| `--contrast-threshold` | — | Define C+ e C- de uma vez (sobrepõe as duas flags abaixo) |
-| `--contrast-threshold-pos` | `1.0` | Limiar de contraste positivo (ON), C+ |
-| `--contrast-threshold-neg` | `1.0` | Limiar de contraste negativo (OFF), C- |
-| `--contrast-threshold-sigma-pos` | `0.0` | Desvio padrão do ruído gaussiano somado a C+ |
-| `--contrast-threshold-sigma-neg` | `0.0` | Desvio padrão do ruído gaussiano somado a C- |
+| `--contrast-threshold` | — | Define C⁺ e C⁻ de uma vez (sobrepõe as duas flags abaixo) |
+| `--contrast-threshold-pos` | `1.0` | Limiar de contraste positivo (ON), C⁺ |
+| `--contrast-threshold-neg` | `1.0` | Limiar de contraste negativo (OFF), C⁻ |
+| `--contrast-threshold-sigma-pos` | `0.0` | Desvio padrão do ruído gaussiano somado a C⁺ |
+| `--contrast-threshold-sigma-neg` | `0.0` | Desvio padrão do ruído gaussiano somado a C⁻ |
 | `--refractory-period-ns` | `0` | Tempo mínimo entre dois eventos no mesmo pixel |
 | `--no-log-image` | desativado | Aplica os limiares sobre a intensidade bruta em vez da logarítmica |
 | `--log-eps` | `0.001` | Epsilon somado antes do log, para estabilizar pixels escuros |

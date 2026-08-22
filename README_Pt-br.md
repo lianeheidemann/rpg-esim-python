@@ -12,6 +12,7 @@
 
 *[Read in English](README.md)*
 
+> [!NOTE]
 > Origem: este código é uma migração (de C++ para Python) e adaptação do núcleo de geração de eventos do ESIM, publicado originalmente por Henri Rebecq, Daniel Gehrig e Davide Scaramuzza (Robotics and Perception Group, Universidade de Zurique), no artigo "ESIM: an Open Event Camera Simulator" (CoRL 2018) — repositório original em uzh-rpg/rpg_esim. O modelo de simulação de eventos (o algoritmo, os limiares de contraste, o período refratário etc.) é dos autores originais. A reescrita em Python puro, a estrutura do pacote, o CLI, as ferramentas auxiliares (src/tools/) e os testes são trabalho feito para este repositório.
 
 <p align="left">

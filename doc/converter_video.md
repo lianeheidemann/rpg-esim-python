@@ -2,6 +2,8 @@
 
 Como preparar um vídeo (`.mp4` e outros formatos que o OpenCV decodifica) para uso com o `esim.cli`.
 
+Os comandos abaixo devem ser executados a partir da pasta `src/` do projeto.
+
 ## 1. Extrair os frames
 
 ```bash
@@ -11,7 +13,7 @@ python tools/premiere_video.py -i video/video.mp4
 Isso cria a pasta `video_input/` com:
 
 - `frame_000000.png`, `frame_000001.png`, ... — um PNG por frame do vídeo;
-- `images.csv` — índice `timestamp_ns,filename` no formato exigido por `esim.cli` (ver [`FolderImageSource`](../esim/data_provider.py)).
+- `images.csv` — índice `timestamp_ns,filename` no formato exigido por `esim.cli` (ver [`FolderImageSource`](../src/esim/data_provider.py)).
 
 Os timestamps são lidos diretamente do vídeo (`CAP_PROP_POS_MSEC`); se o codec não reportar
 timing confiável, o script recorre a um fps fixo automaticamente.

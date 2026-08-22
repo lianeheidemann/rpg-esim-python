@@ -28,6 +28,10 @@ jobs:
       VIDEO_PATH: ${{ inputs.video_path }}
       CONTRAST_THRESHOLD: ${{ inputs.contrast_threshold }}
 
+    defaults:
+      run:
+        working-directory: src
+
     steps:
       - name: Baixar o código
         uses: actions/checkout@v7
@@ -92,12 +96,12 @@ jobs:
         with:
           name: video-events-${{ github.run_number }}
           path: |
-            video_events.gif
-            video_preview.png
-            video_out/events.npz
-            video_out/events.txt
-            video_out/event_frames/
-            video_out/frames/
+            src/video_events.gif
+            src/video_preview.png
+            src/video_out/events.npz
+            src/video_out/events.txt
+            src/video_out/event_frames/
+            src/video_out/frames/
           if-no-files-found: error
           retention-days: 30
           compression-level: 6

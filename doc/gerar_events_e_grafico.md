@@ -30,8 +30,8 @@ arquivo correspondente:
 66666666,frame_000002.png
 ```
 
-Os comandos abaixo devem ser executados no terminal, a partir da pasta raiz do
-projeto.
+Os comandos abaixo devem ser executados no terminal, a partir da pasta `src/`
+do projeto.
 
 ## 2. Gerar `events.txt` e `events.npz`
 

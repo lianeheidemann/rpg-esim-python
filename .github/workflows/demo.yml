@@ -5,9 +5,9 @@ on:
   push:
     branches: [main]
     paths:
-      - "esim/**"
-      - "tools/make_test_sequence.py"
-      - "requirements.txt"
+      - "src/esim/**"
+      - "src/tools/make_test_sequence.py"
+      - "src/requirements.txt"
       - ".github/workflows/demo.yml"
 
 permissions:
@@ -24,6 +24,10 @@ jobs:
 
     env:
       MPLBACKEND: Agg
+
+    defaults:
+      run:
+        working-directory: src
 
     steps:
       - name: Baixar o código
@@ -80,11 +84,11 @@ jobs:
         with:
           name: esim-demo-${{ github.run_number }}
           path: |
-            preview_ci.png
-            demo_out_ci/events.npz
-            demo_out_ci/events.txt
-            demo_out_ci/event_frames/
-            demo_out_ci/frames/
+            src/preview_ci.png
+            src/demo_out_ci/events.npz
+            src/demo_out_ci/events.txt
+            src/demo_out_ci/event_frames/
+            src/demo_out_ci/frames/
           if-no-files-found: error
           retention-days: 30
           compression-level: 6

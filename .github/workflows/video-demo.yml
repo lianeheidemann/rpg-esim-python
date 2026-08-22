@@ -21,7 +21,7 @@ permissions:
 jobs:
   process-video:
     name: Convert video to events
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 60
 
     env:
@@ -36,6 +36,12 @@ jobs:
     steps:
       - name: Baixar o código
         uses: actions/checkout@v7
+
+      - name: Instalar ffmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -version
 
       - name: Configurar Python
         uses: actions/setup-python@v7
@@ -95,36 +101,6 @@ jobs:
         run: |
           test -s video_preview.png
           test -s video_events.gif
-          test -s video_out/events.npz
-          test -s video_out/events.txt
-
-      - name: Disponibilizar resultados
-        uses: actions/upload-artifact@v7
-        with:
-          name: video-events-${{ github.run_number }}
-          path: |
-            src/video_events.gif
-            src/video_preview.png
-            src/video_out/events.npz
-            src/video_out/events.txt
-            src/video_out/event_frames/
-            src/video_out/frames/
-          if-no-files-found: error
-          retention-days: 30
-          compression-level: 6
-          uses: actions/upload-artifact@v7
-        with:
-          name: video-events-${{ github.run_number }}
-          path: |
-            src/video_events.gif
-            src/video_preview.png
-            src/video_out/events.npz
-            src/video_out/events.txt
-            src/video_out/event_frames/
-            src/video_out/frames/
-          if-no-files-found: error
-          retention-days: 30
-          compression-level: 6
           test -s video_out/events.npz
           test -s video_out/events.txt
 

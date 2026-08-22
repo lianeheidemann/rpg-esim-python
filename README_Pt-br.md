@@ -1,5 +1,20 @@
 # ESIM (port em Python): um simulador de câmera de eventos
 
+<p align="left">
+  <img src="https://img.shields.io/badge/Python-3.8%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.8+">
+  <img src="https://img.shields.io/badge/NumPy-1.21%2B-013243?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+  <img src="https://img.shields.io/badge/OpenCV-4.5%2B-5C3EE8?style=for-the-badge&logo=opencv&logoColor=white" alt="OpenCV">
+  <img src="https://img.shields.io/badge/Matplotlib-3.4%2B-11557C?style=for-the-badge" alt="Matplotlib">
+</p>
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Event%20Camera-Simulator-9C27B0?style=flat-square" alt="Event Camera Simulator">
+  <img src="https://img.shields.io/badge/Implementation-Pure%20Python-FFD43B?style=flat-square&logo=python&logoColor=black" alt="Pure Python">
+  <img src="https://img.shields.io/badge/ROS-Not%20Required-2EA44F?style=flat-square" alt="ROS Not Required">
+  <img src="https://img.shields.io/github/license/lianeheidemann/rpg_esim_python_v2?style=flat-square&color=blue" alt="MIT License">
+  <img src="https://img.shields.io/github/last-commit/lianeheidemann/rpg_esim_python_v2?style=flat-square&color=orange" alt="Last Commit">
+</p>
+
 *[Read in English](README.md)*
 
 Um port em Python puro do núcleo de geração de eventos do [ESIM](https://github.com/uzh-rpg/rpg_esim), um simulador open-source para câmeras de eventos (sensores classe DVS/DAVIS). Dado uma pasta de imagens de intensidade com timestamp, ele reproduz o modelo de eventos original por pixel — incluindo ruído no limiar, período refratário e geração de frames com motion blur — sem nenhuma dependência de ROS, catkin ou toolchain C++.

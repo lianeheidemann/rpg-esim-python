@@ -176,6 +176,10 @@ python -m esim.viz demo_out --save-to preview.png   # sem interface gráfica, gr
 
 Isso renderiza a imagem de eventos acumulados (azul = predominância de ON, vermelho = predominância de OFF) ao lado do gráfico de taxa de eventos ao longo do tempo.
 
+<p align="left">
+  <img src="assets/viz_preview.png" alt="Prévia dos eventos acumulados e da taxa de eventos">
+</p>
+
 Para transformar `events.txt` em uma sequência de frames (azul = ON, vermelho = OFF),
 agrupando os eventos em janelas de 10 ms:
 

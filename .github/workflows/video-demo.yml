@@ -70,9 +70,20 @@ jobs:
             --output video_out/event_frames \
             --window-ms 10
 
+      - name: Criar GIF dos eventos
+        run: |
+          ffmpeg -y \
+            -framerate 100 \
+            -i "video_out/event_frames/frame_%06d.png" \
+            -filter_complex \
+            "fps=20,scale=360:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=64:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle" \
+            -loop 0 \
+            video_events.gif
+
       - name: Verificar resultados
         run: |
           test -s video_preview.png
+          test -s video_events.gif
           test -s video_out/events.npz
           test -s video_out/events.txt
 
@@ -81,6 +92,7 @@ jobs:
         with:
           name: video-events-${{ github.run_number }}
           path: |
+            video_events.gif
             video_preview.png
             video_out/events.npz
             video_out/events.txt

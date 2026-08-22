@@ -14,6 +14,8 @@
   <img src="https://img.shields.io/github/license/lianeheidemann/rpg_esim_python_v2?style=flat-square&color=blue" alt="MIT License">
 </p>
 
+[![Generate Demo](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml/badge.svg)](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml)
+
 *[Read in English](README.md)*
 
 Um port em Python puro do núcleo de geração de eventos do [ESIM](https://github.com/uzh-rpg/rpg_esim), um simulador open-source para câmeras de eventos (sensores classe DVS/DAVIS). Dado uma pasta de imagens de intensidade com timestamp, ele reproduz o modelo de eventos original por pixel — incluindo ruído no limiar, período refratário e geração de frames com motion blur — sem nenhuma dependência de ROS, catkin ou toolchain C++.

@@ -15,8 +15,8 @@
 > Origem: este código é uma migração (de C++ para Python) e adaptação do núcleo de geração de eventos do ESIM, publicado originalmente por Henri Rebecq, Daniel Gehrig e Davide Scaramuzza (Robotics and Perception Group, Universidade de Zurique), no artigo "ESIM: an Open Event Camera Simulator" (CoRL 2018) — repositório original em uzh-rpg/rpg_esim. O modelo de simulação de eventos (o algoritmo, os limiares de contraste, o período refratário etc.) é dos autores originais. A reescrita em Python puro, a estrutura do pacote, o CLI, as ferramentas auxiliares (src/tools/) e os testes são trabalho feito para este repositório.
 
 <p align="left">
-  <img src="assets/original.gif" width="40%" alt="Vídeo original">
-  <img src="assets/event_camera_hand-1.gif" width="40%" alt="Eventos simulados">
+  <img src="assets/original.gif" width="48%" alt="Vídeo original">
+  <img src="assets/event_camera_hand-1.gif" width="48%" alt="Eventos simulados">
 </p>
 
 Um port em Python puro do núcleo de geração de eventos do [ESIM](https://github.com/uzh-rpg/rpg_esim), um simulador open-source para câmeras de eventos (sensores classe DVS/DAVIS). Dado uma pasta de imagens de intensidade com timestamp, ele reproduz o modelo de eventos original por pixel — incluindo ruído no limiar, período refratário e geração de frames com motion blur — sem nenhuma dependência de ROS, catkin ou toolchain C++.

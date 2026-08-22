@@ -9,7 +9,7 @@
 
 [![Generate Demo](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml/badge.svg)](https://github.com/lianeheidemann/rpg_esim_python_v2/actions/workflows/demo.yml)
 
-*[[Leia em Português]](README_Pt-br.md)*
+*[Leia em Português](README_Pt-br.md)*
 
 A pure-Python port of the event-generation core of [ESIM](https://github.com/uzh-rpg/rpg_esim), an open-source simulator for event cameras (DVS/DAVIS-class sensors). Given a folder of timestamped intensity images, it reproduces the original per-pixel event model — including threshold noise, the refractory period, and motion-blurred frame output — without any ROS, catkin, or C++ toolchain.
 

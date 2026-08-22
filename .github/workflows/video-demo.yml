@@ -23,6 +23,11 @@ jobs:
     name: Convert video to events
     runs-on: ubuntu-latest
 
+    process-video:
+      name: Convert video to events
+      runs-on: ubuntu-latest
+      timeout-minutes: 60
+
     env:
       MPLBACKEND: Agg
       VIDEO_PATH: ${{ inputs.video_path }}

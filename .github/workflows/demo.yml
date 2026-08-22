@@ -1,0 +1,90 @@
+name: Generate Demo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "esim/**"
+      - "tools/make_test_sequence.py"
+      - "requirements.txt"
+      - ".github/workflows/demo.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: demo-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  generate-demo:
+    name: Generate event-camera simulation
+    runs-on: ubuntu-latest
+
+    env:
+      MPLBACKEND: Agg
+
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v7
+
+      - name: Configurar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+          cache: pip
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Criar sequência sintética
+        run: |
+          python tools/make_test_sequence.py \
+            --output demo_seq_ci \
+            --frames 120 \
+            --width 320 \
+            --height 240
+
+      - name: Simular eventos
+        run: |
+          python -m esim.cli \
+            --input demo_seq_ci \
+            --output demo_out_ci \
+            --contrast-threshold 0.2 \
+            --random-seed 42
+
+      - name: Gerar visualização
+        run: |
+          python -m esim.viz \
+            demo_out_ci/events.npz \
+            --save-to preview_ci.png
+
+      - name: Gerar frames de eventos
+        run: |
+          python -m esim.event_frames \
+            demo_out_ci/events.txt \
+            --output demo_out_ci/event_frames \
+            --window-ms 10
+
+      - name: Verificar resultados
+        run: |
+          test -s preview_ci.png
+          test -s demo_out_ci/events.npz
+          test -s demo_out_ci/events.txt
+
+      - name: Disponibilizar demonstração
+        uses: actions/upload-artifact@v7
+        with:
+          name: esim-demo-${{ github.run_number }}
+          path: |
+            preview_ci.png
+            demo_out_ci/events.npz
+            demo_out_ci/events.txt
+            demo_out_ci/event_frames/
+            demo_out_ci/frames/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6

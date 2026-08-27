@@ -49,9 +49,13 @@ In practice this means: **you supply the images** (rendered however you like, or
 
 ## Architecture
 
-```
-images.csv + frames ──▶ FolderImageSource ──▶ EventSimulator ──▶ events.npz / events.txt
-                                          └──▶ CameraSimulator ──▶ frames/ (blurred PNGs)
+```mermaid
+flowchart LR
+    A["images.csv + frames"] --> B[FolderImageSource]
+    B --> C[EventSimulator]
+    B --> D[CameraSimulator]
+    C --> E["events.npz / events.txt"]
+    D --> F["frames/ (blurred PNGs)"]
 ```
 
 - **`FolderImageSource`** ([src/esim/data_provider.py](src/esim/data_provider.py)) reads a stamped image sequence from disk.

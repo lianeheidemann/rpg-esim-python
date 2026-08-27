@@ -48,15 +48,7 @@ In practice this means: **you supply the images** (rendered however you like, or
 - Only NumPy, OpenCV, and Matplotlib as dependencies — no ROS, no compiled extensions, runs anywhere Python does (Windows, macOS, Linux)
 
 ## Architecture
-
-```mermaid
-flowchart LR
-    A["images.csv + frames"] --> B[FolderImageSource]
-    B --> C[EventSimulator]
-    B --> D[CameraSimulator]
-    C --> E["events.npz / events.txt"]
-    D --> F["frames/ (blurred PNGs)"]
-```
+<img width="1536" height="338" alt="1000382132" src="https://github.com/user-attachments/assets/dec802dd-1a46-4e20-b733-e5d5b351c854" />
 
 - **`FolderImageSource`** ([src/esim/data_provider.py](src/esim/data_provider.py)) reads a stamped image sequence from disk.
 - **`EventSimulator`** ([src/esim/event_simulator.py](src/esim/event_simulator.py)) compares the (log-)intensity signal against the contrast thresholds per pixel and emits events, honoring threshold noise and the refractory period.

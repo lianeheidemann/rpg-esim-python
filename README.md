@@ -13,7 +13,7 @@
 > [!NOTE]
 > Provenance: this code is a migration (from C++ to Python) and adaptation of the event-generation core of ESIM, originally published by Henri Rebecq, Daniel Gehrig, and Davide Scaramuzza (Robotics and Perception Group, University of Zurich) in "ESIM: an Open Event Camera Simulator" (CoRL 2018) — original repository at uzh-rpg/rpg_esim. The event-simulation model (the algorithm, contrast thresholds, refractory period, etc.) belongs to the original authors. The pure-Python rewrite, package structure, CLI, tooling (src/tools/), and tests are work done for this repository
 
-<img src="assets/demonstration-v1.webp" width="100%">
+<img src="assets/demonstration-v4.webp" width="100%">
 
 A pure-Python port of the event-generation core of [ESIM](https://github.com/uzh-rpg/rpg_esim), an open-source simulator for event cameras (DVS/DAVIS-class sensors). Given a folder of timestamped intensity images, it reproduces the original per-pixel event model — including threshold noise, the refractory period, and motion-blurred frame output — without any ROS, catkin, or C++ toolchain.
 
